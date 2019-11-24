@@ -21,6 +21,17 @@ class CardImage extends React.Component {
   }
 }
 
+class CardCaption extends React.Component {
+  render() {
+    return (
+      <div className="Card-caption">
+          <p>{this.props.name}</p>
+          <ReactCountryFlag className="flag" code={this.props.code} svg />
+      </div>
+    )
+  }
+}
+
 class Card extends React.Component {
   render() {
     if (this.props.breeds.length) {
@@ -32,18 +43,7 @@ class Card extends React.Component {
         <div className="Card">
           <a href={url} target="_blank" rel="noopener noreferrer">
             <CardImage id={this.props.id} url={this.props.url} />
-            <p>{name}</p>
-            <ReactCountryFlag
-              styleProps={{
-                width: '20px',
-                height: '20px',
-                position: 'absolute',
-                margin: '-28px 0 0 0',
-                left: '16vmin'
-              }}
-              code={code}
-              svg
-            />
+            <CardCaption name={name} code={code} />
           </a>
         </div>
       )
@@ -104,7 +104,7 @@ class App extends React.Component {
   }
 
   fetch() {
-    const url = `${process.env.REACT_APP_API_HOST}/v1/images/search?size=small&format=json&limit=21&page=${this.state.page}`
+    const url = `${process.env.REACT_APP_API_HOST}/v1/images/search?size=small&format=json&limit=20&page=${this.state.page}`
     return fetch(url, {
         headers: { 'x-api-key': process.env.REACT_APP_API_KEY }
       })

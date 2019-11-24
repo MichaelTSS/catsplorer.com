@@ -46,12 +46,23 @@
   border-radius: 3px;
   box-shadow: 2px 1px 15px -5px rgba(0, 0, 0, 0.62);
 }
-.App-main .Cards-list .Card p {
+.App-main .Cards-list .Card .Card-caption {
   position: absolute;
   width: 40vmin;
-  margin: -35px 0 0 0;
   background-color: rgba(255, 255, 255, .75);
   color: initial;
-  padding-left: 1vmin;
+  bottom: -40vmin;
+  display: flex;
+  flex-direction: row;
+  padding: 0 1vmin;
+  align-items: center;
+}
+.App-main .Cards-list .Card .Card-caption p {
+  margin: 0;
+  align-self: self-start;
+  flex-grow: 2;
   text-align: left;
+}
+.App-main .Cards-list .Card .Card-caption .flag {
+  min-width: 1.333333em;
 }
