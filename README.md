@@ -1,3 +1,19 @@
+Le test technique consiste à concevoir une petite application web qui affiche sous forme de trombinoscope des photos de chats (photo + si race existe, nom, origine, page wiki).
+
+Pour cela, thecatapi.com met à disposition une API que tu peux requêter pour obtenir tous les chats dont tu auras besoin https://docs.thecatapi.com
+
+Contraintes techniques :
+
+- Cette application doit être mobile-first
+- La liste complète des chats ne pourra pas être affichée sur la même page, il faudra les paginer de façon élégante
+- Elle doit être faite en Vue.JS ou en Vanilla JS
+- Je vais tester l'application avec plusieurs vitesses de connexion, 3G, 2G etc. aussi l'application doit prioriser le contenu visible, et afficher des placeholders comme le fait Facebook (cf. pièce jointe).
+- Héberger le code source sur un repo git privé (ex. Github, Bitbucket, Gitlab, CodeCommit, etc.) et me donner accès -> michel@jellynote.com
+- Le projet doit pouvoir être lancé en quelques lignes de commande sur un poste de développement
+
+NB : Ne pas pousser tout le projet en un unique commit. L'historique Git doit révéler ta progression et tes axes de réflexion.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

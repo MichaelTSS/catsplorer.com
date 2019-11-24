@@ -1,12 +1,5 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -15,9 +8,41 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  text-transform: capitalize;
+}
+
+.App-header {
+  height: 20vh;
+  display: flex;
+  align-items: center;
 }
 
 .App-link {
   color: #09d3ac;
+}
+
+.App-main {
+  height: 80vh;
+  width: 90vw;
+}
+
+.App-main .App-Loader {}
+.App-main .Cards-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.App-main .Cards-list .Card {}
+.App-main .Cards-list .Card a {}
+.App-main .Cards-list .Card .Card-image {
+  background-position: center center;
+  background-size: cover;
+  width: 40vmin;
+  height: 40vmin;
+}
+.App-main .Cards-list .Card .Card-image img {}
+.App-main .Cards-list .Card p {
+  position: absolute;
+  width: 40vmin;
+  margin: -35px 0 0 0;
 }
