@@ -8,6 +8,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  overflow: scroll;
 }
 
 .App-header {
@@ -16,33 +17,40 @@
   align-items: center;
 }
 
-.App-link {
-  color: #09d3ac;
-}
-
 .App-main {
-  height: 80vh;
-  width: 90vw;
+  min-height: 80vh;
+  width: 95vw;
+  padding-bottom: 4vmin;
 }
 
 .App-main .App-Loader {}
+.App-main .App-LoadMore {}
 .App-main .Cards-list {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
-.App-main .Cards-list .Card {}
-.App-main .Cards-list .Card a {}
+.App-main .Cards-list .Card {
+  margin-bottom: 6vmin;
+}
+.App-main .Cards-list .Card a {
+  position: relative;
+}
 .App-main .Cards-list .Card .Card-image {
   background-position: center center;
   background-size: cover;
   width: 40vmin;
   height: 40vmin;
+  border-radius: 3px;
+  box-shadow: 2px 1px 15px -5px rgba(0, 0, 0, 0.62);
 }
-.App-main .Cards-list .Card .Card-image img {}
 .App-main .Cards-list .Card p {
   position: absolute;
   width: 40vmin;
   margin: -35px 0 0 0;
+  background-color: rgba(255, 255, 255, .75);
+  color: initial;
+  padding-left: 1vmin;
+  text-align: left;
 }
