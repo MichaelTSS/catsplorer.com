@@ -1,109 +1,48 @@
-import React from 'react';
-import { throttle } from 'throttle-debounce';
-import CatsList from './CatList.js';
-import './App.scss';
+// react
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route
+} from 'react-router-dom'
 
-class Loader extends React.Component {
-  render() {
-    if (!this.props.isLoading) return null
-    //
-    return <h4 className="App-Loader">Loading...</h4>
-  }
-}
+// home-brewed
+import BrowseCats from './BrowseCats.js'
+import About from './About.js'
 
-class LoadMore extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
-  }
+// styles
+import './App.scss'
 
-  handleClick() {
-    this.props.onLoadMore()
-  }
-  render() {
-    if (this.props.isLoading || this.props.isDone) {
-      return null
-    }
-    return <h4 className="App-LoadMore" onClick={this.handleClick}>Load more</h4>
-  }
-}
-
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleLoadMore = this.handleLoadMore.bind(this)
-    this.state = { isLoading: true, cats: [], page: 0 }
-    this.throttled = throttle(500, this.handleScroll.bind(this))
-  }
-
-  componentDidMount() {
-    this.fetch()
-    window.addEventListener('scroll', this.throttled)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.throttled)
-  }
-
-  fetch() {
-    const url = `${process.env.REACT_APP_API_HOST}/v1/images/search?size=small&format=json&limit=20&page=${this.state.page}`
-    return fetch(url, {
-        headers: { 'x-api-key': process.env.REACT_APP_API_KEY }
-      })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          isLoading: false,
-          cats: this.state.cats.concat(data.slice())
-        })
-        if (!data.length) {
-          this.setState({
-            isDone: true
-          })
-        }
-      })
-  }
-
-  handleScroll() {
-    const maxHeight = Math.max(window.innerHeight * 1.5, window.innerHeight + 500)
-    const isThresholdReached = maxHeight + document.documentElement.scrollTop > document.documentElement.offsetHeight
-    if (this.state.isLoading || this.state.isDone || !isThresholdReached) return
-    //
-    this.handleLoadMore()
-  }
-
-  paneDidMount = (node) => {
-    if (node) {
-      node.addEventListener('scroll', () => console.log('scroll!'));
-    }
-  }
-
-  handleLoadMore() {
-    this.setState({
-      isLoading: true,
-      page: this.state.page + 1
-    })
-    this.fetch()
-      .then(() => {
-        this.setState({ isLoading: false })
-      })
-  }
-
-  render() {
-    const subdomain = document.location.hostname.split('.')[0]
-    return (
-      <div className="App">
+function App () {
+  return (
+    <div className="App">
+      <Router>
         <header className="App-header">
-          <p> Salut, {subdomain}.</p>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+            </ul>
+          </nav>
         </header>
         <main className="App-main">
-          <CatsList isLoading={this.state.isLoading} cats={this.state.cats} />
-          <Loader isLoading={this.state.isLoading} />
-          <LoadMore isLoading={this.state.isLoading} isDone={this.state.isDone} onLoadMore={this.handleLoadMore} />
+          <Switch>
+            <Route path="/about">
+              <About className="About-page" />
+            </Route>
+            <Route path="/">
+              <BrowseCats className="Home-page" />
+            </Route>
+          </Switch>
         </main>
-      </div>
-    )
-  }
+      </Router>
+    </div>
+  )
 }
 
-export default App;
+export default App
