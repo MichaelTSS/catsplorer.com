@@ -77,7 +77,9 @@ export class BrowseCats extends React.Component {
   }
 
   handleScroll() {
-    const maxHeight = Math.max(window.innerHeight * 1.5, window.innerHeight + 500)
+    const THRESHOLD = 1000
+    //
+    const maxHeight = Math.max(window.innerHeight * 1.5, window.innerHeight + THRESHOLD)
     const isThresholdReached = maxHeight + document.documentElement.scrollTop > document.documentElement.offsetHeight
     if (this.state.isLoading || this.state.isDone || !isThresholdReached) return
     //

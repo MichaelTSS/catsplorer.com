@@ -1,0 +1,13 @@
+@keyframes showUp {
+  0% {
+    opacity: .1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.App-main .Cards-list .Card.animate {
+  animation: showUp .65s ease forwards;
+}

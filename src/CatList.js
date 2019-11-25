@@ -1,5 +1,9 @@
-import React from 'react';
+// react
+import React from 'react'
+
+// libs
 import ReactCountryFlag from 'react-country-flag';
+import handleViewport from 'react-in-viewport';
 
 
 class CardImage extends React.Component {
@@ -45,6 +49,15 @@ class Card extends React.Component {
     console.error('Detected an invalid cat image... Sad cat is sad.')
   }
 
+  getClass() {
+    const { inViewport, enterCount } = this.props;
+    // Fade in only the first time we enter the viewport
+    if (inViewport || enterCount > 0) {
+      return 'Card animate'
+    }
+    return 'Card'
+  }
+
   render() {
     if (this.state.error) return null
     //
@@ -54,7 +67,7 @@ class Card extends React.Component {
       const code = this.props.breeds[0].country_code.toLowerCase()
       //
       return (
-        <div className="Card">
+        <div className={this.getClass()}>
           <a href={url} target="_blank" rel="noopener noreferrer">
             <CardImage id={this.props.id} url={this.props.url} onInvalidImage={this.handleInvalidImage} />
             <CardCaption name={name} code={code} />
@@ -63,17 +76,27 @@ class Card extends React.Component {
       )
     }
     return (
-      <div className="Card">
+      <div className={this.getClass()}>
         <CardImage id={this.props.id} url={this.props.url} onInvalidImage={this.handleInvalidImage} />
       </div>
     )
   }
 }
 
+const ViewportBlock = handleViewport(Card)
+
 class CatsList extends React.Component {
   render() {
     const catCards = this.props.cats.map((cat) =>
-      <Card key={cat.id} id={cat.id} breeds={cat.breeds} url={cat.url} />
+      // <Card key={cat.id} id={cat.id} breeds={cat.breeds} url={cat.url} />
+      <ViewportBlock
+        onEnterViewport={() => console.log('enter', cat.id)}
+        onLeaveViewport={() => console.log('leave', cat.id)}
+        key={cat.id}
+        id={cat.id}
+        breeds={cat.breeds}
+        url={cat.url}
+      />
     )
     return (
       <div className="Cards-list">

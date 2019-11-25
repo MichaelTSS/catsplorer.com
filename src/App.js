@@ -2,7 +2,7 @@
 import React from 'react'
 import {
   BrowserRouter as Router,
-  Link,
+  NavLink,
   Switch,
   Route
 } from 'react-router-dom'
@@ -20,14 +20,8 @@ function App () {
       <Router>
         <header className="App-header">
           <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-            </ul>
+            <NavLink exact={true} to="/" activeClassName="active">Explore</NavLink>
+            <NavLink exact={true} to="/about" activeClassName="active">About</NavLink>
           </nav>
         </header>
         <main className="App-main">
@@ -36,7 +30,7 @@ function App () {
               <About className="About-page" />
             </Route>
             <Route path="/">
-              <BrowseCats className="Home-page" />
+              <BrowseCats className="Explore-page" />
             </Route>
           </Switch>
         </main>
