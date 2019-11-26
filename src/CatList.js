@@ -90,8 +90,6 @@ class CatsList extends React.Component {
     const catCards = this.props.cats.map((cat) =>
       // <Card key={cat.id} id={cat.id} breeds={cat.breeds} url={cat.url} />
       <ViewportBlock
-        onEnterViewport={() => console.log('enter', cat.id)}
-        onLeaveViewport={() => console.log('leave', cat.id)}
         key={cat.id}
         id={cat.id}
         breeds={cat.breeds}
