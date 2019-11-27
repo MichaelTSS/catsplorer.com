@@ -4,6 +4,7 @@ a {
   font-weight: 700;
   color: #97d4ff;
   text-decoration: none !important;
+  cursor: pointer;
 }
 
 .App {
@@ -21,7 +22,7 @@ a {
 }
 
 .App-header {
-  height: 20vh;
+  height: 10vh;
   display: flex;
   align-items: center;
   text-transform: capitalize;
@@ -38,13 +39,43 @@ a {
 }
 
 .App-main {
-  min-height: 80vh;
+  min-height: 90vh;
   width: 95vw;
   padding-bottom: 4vmin;
 
   .App-Loader {}
 
   .App-LoadMore {}
+
+  .Categories-list {
+    min-height: 10vh;
+    margin-bottom: 3vh;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+    .Category {
+      min-width: 12vw;
+      padding: 5px 20px;
+      button {
+        color: #eaeaea;
+        border: 1px solid #eaeaea;
+        background: transparent;
+        border-radius: 3px;
+        padding: 0 10px;
+        outline: 0 !important;
+        cursor: pointer;
+        font-size: 15px;
+        text-transform: capitalize;
+        &.active {
+          color: #282c34;
+          background: #eaeaea;
+        }
+      }
+    }
+  }
 
   .Cards-list {
     display: flex;

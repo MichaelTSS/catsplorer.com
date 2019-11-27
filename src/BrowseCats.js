@@ -8,6 +8,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 // home-brewed
 import CatsList from './CatList.js'
+import CategoriesList from './CategoriesList.js'
 
 class Loader extends React.Component {
   render() {
@@ -44,11 +45,23 @@ export class BrowseCats extends React.Component {
   constructor(props) {
     super(props)
     this.handleLoadMore = this.handleLoadMore.bind(this)
-    this.state = { isLoading: true, cats: [], page: 0 }
+    this.setStateCategories = this.setStateCategories.bind(this)
     this.throttled = throttle(500, this.handleScroll.bind(this))
+    this.state = { isLoading: true, cats: [], page: 0, categories: [] }
+  }
+
+  setStateCategories(data) {
+    // const category = Object.assign({}, data, { isActive: !data.isActive })
+    const categories = [...this.state.categories]
+    categories.forEach(x => x.isActive = (x.id === data.id && !data.isActive))
+    // const idx = categories.findIndex(x => x.id === category.id)
+    // categories.splice(idx, 1, category)
+    this.setState({ categories, cats: [], page: 0, isLoading: true })
+    this.fetch()
   }
 
   componentDidMount() {
+    this.fetchCategories()
     this.fetch()
     window.addEventListener('scroll', this.throttled)
   }
@@ -57,8 +70,20 @@ export class BrowseCats extends React.Component {
     window.removeEventListener('scroll', this.throttled)
   }
 
+  fetchCategories() {
+    const url = `${process.env.REACT_APP_API_HOST}/v1/categories`
+    return fetch(url, {
+        headers: { 'x-api-key': process.env.REACT_APP_API_KEY }
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ categories: data.slice() })
+      })
+  }
+
   fetch() {
-    const url = `${process.env.REACT_APP_API_HOST}/v1/images/search?size=small&format=json&limit=20&page=${this.state.page}`
+    const category_ids = this.state.categories.filter(x => x.isActive).map(x => x.id).join(',')
+    const url = `${process.env.REACT_APP_API_HOST}/v1/images/search?size=small&format=json&limit=20&page=${this.state.page}&category_ids=${category_ids}`
     return fetch(url, {
         headers: { 'x-api-key': process.env.REACT_APP_API_KEY }
       })
@@ -86,12 +111,6 @@ export class BrowseCats extends React.Component {
     this.handleLoadMore()
   }
 
-  paneDidMount = (node) => {
-    if (node) {
-      node.addEventListener('scroll', () => console.log('scroll!'));
-    }
-  }
-
   handleLoadMore() {
     this.setState({
       isLoading: true,
@@ -106,6 +125,7 @@ export class BrowseCats extends React.Component {
   render() {
     return (
       <div className={this.props.className}>
+        <CategoriesList categories={this.state.categories} setStateCategories={this.setStateCategories} />
         <CatsList isLoading={this.state.isLoading} cats={this.state.cats} />
         <Loader isLoading={this.state.isLoading} />
         <LoadMore isLoading={this.state.isLoading} isDone={this.state.isDone} onLoadMore={this.handleLoadMore} />
@@ -114,4 +134,4 @@ export class BrowseCats extends React.Component {
   }
 }
 
-export default BrowseCats;
+export default BrowseCats

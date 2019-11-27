@@ -2,8 +2,8 @@
 import React from 'react'
 
 // libs
-import ReactCountryFlag from 'react-country-flag';
-import handleViewport from 'react-in-viewport';
+import ReactCountryFlag from 'react-country-flag'
+import handleViewport from 'react-in-viewport'
 
 
 class CardImage extends React.Component {
@@ -46,11 +46,11 @@ class Card extends React.Component {
 
   handleInvalidImage() {
     // this.setState({ error: true })
-    console.error('Detected an invalid cat image... Sad cat is sad.')
+    console.info('Detected an invalid cat image... Sad cat is sad.')
   }
 
   getClass() {
-    const { inViewport, enterCount } = this.props;
+    const { inViewport, enterCount } = this.props
     // Fade in only the first time we enter the viewport
     if (inViewport || enterCount > 0) {
       return 'Card animate'
@@ -61,6 +61,8 @@ class Card extends React.Component {
   render() {
     if (this.state.error) return null
     //
+    const cardImage = <CardImage id={this.props.id} url={this.props.url} onInvalidImage={this.handleInvalidImage} />
+    //
     if (this.props.breeds.length) {
       const url = this.props.breeds[0].wikipedia_url
       const name = this.props.breeds[0].name
@@ -69,7 +71,7 @@ class Card extends React.Component {
       return (
         <div className={this.getClass()}>
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <CardImage id={this.props.id} url={this.props.url} onInvalidImage={this.handleInvalidImage} />
+            {cardImage}
             <CardCaption name={name} code={code} />
           </a>
         </div>
@@ -77,7 +79,7 @@ class Card extends React.Component {
     }
     return (
       <div className={this.getClass()}>
-        <CardImage id={this.props.id} url={this.props.url} onInvalidImage={this.handleInvalidImage} />
+        {cardImage}
       </div>
     )
   }
@@ -104,4 +106,4 @@ class CatsList extends React.Component {
   }
 }
 
-export default CatsList;
+export default CatsList
