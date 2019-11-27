@@ -38,6 +38,10 @@ a {
   }
 }
 
+$break-sm: 360px;
+$break-md: 450px;
+$break-lg: 570px;
+
 .App-main {
   min-height: 90vh;
   width: 95vw;
@@ -49,16 +53,21 @@ a {
 
   .Categories-list {
     min-height: 10vh;
-    margin-bottom: 3vh;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
     flex-direction: row;
     text-align: center;
     justify-content: space-around;
+    margin-bottom: 3vh;
+    @media screen and (min-width: $break-lg) { margin-bottom: unset; }
     .Category {
       min-width: 12vw;
-      padding: 5px 20px;
+      padding: 5px 0;
+      width: 50%;
+      @media screen and (min-width: $break-sm) { width: 33%; }
+      @media screen and (min-width: $break-md) { width: 25%; }
+      @media screen and (min-width: $break-lg) { width: auto; }
       button {
         color: #eaeaea;
         border: 1px solid #eaeaea;
