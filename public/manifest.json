@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Collections de chats",
+  "name": "L'instagram des explorateurs de chats",
   "icons": [
     {
       "src": "favicon.ico",

@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 
 // home-brewed
-import BrowseCats from './BrowseCats.js'
+import Explore from './Explore.js'
 import About from './About.js'
 
 // styles
@@ -30,7 +30,7 @@ function App () {
               <About className="About-page" />
             </Route>
             <Route path="/">
-              <BrowseCats className="Explore-page" />
+              <Explore className="Explore-page" />
             </Route>
           </Switch>
         </main>
