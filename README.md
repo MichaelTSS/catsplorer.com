@@ -5,9 +5,7 @@
 This is a React-based mobile first web app I built based on [TheCatAPI.com](https://thecatapi.com/)
 
 
-Open [https://master.dicydob553szs.amplifyapp.com](https://master.dicydob553szs.amplifyapp.com) to view it in the browser.
-
-<!-- Open [catsplorer.com](https://catsplorer.com) to view it in the browser. -->
+Open [catsplorer.com](https://catsplorer.com/) to view it in the browser.
 
 
 
