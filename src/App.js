@@ -4,7 +4,8 @@ import {
   BrowserRouter as Router,
   NavLink,
   Switch,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
 
 // home-brewed
@@ -20,17 +21,21 @@ function App () {
       <Router>
         <header className="App-header">
           <nav>
-            <NavLink exact={true} to="/" activeClassName="active">Explore</NavLink>
-            <NavLink exact={true} to="/about" activeClassName="active">About</NavLink>
+            <NavLink exact to="/" activeClassName="active">Explore</NavLink>
+            <NavLink exact to="/about" activeClassName="active">About</NavLink>
           </nav>
         </header>
         <main className="App-main">
           <Switch>
-            <Route path="/about">
+            <Route exact path="/about">
               <About className="About-page" />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Explore className="Explore-page" />
+            </Route>
+            <Route>
+              {/* redirect to root if no match */}
+              <Redirect to="/" />
             </Route>
           </Switch>
         </main>
