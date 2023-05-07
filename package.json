@@ -10,7 +10,7 @@
     "react-in-viewport": "^1.0.0-alpha.11",
     "react-loader-spinner": "^3.1.5",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "5.0.1",
     "throttle-debounce": "^2.1.0"
   },
   "scripts": {
